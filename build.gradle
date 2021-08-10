@@ -51,8 +51,6 @@ subprojects {
 
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        def bintrayUser = properties.getProperty('bintray.user')
-        def bintrayApikey = properties.getProperty('bintray.apikey')
 
         if(project.isLibrary) {
             configure(project) {
