@@ -45,7 +45,8 @@ public class CameraUtils {
         /* Credits: Top answer at http://stackoverflow.com/a/19599365/868173 */
         if (camera != null) {
             Camera.Parameters parameters = camera.getParameters();
-
+            if (parameters == null)
+                return false;
             if (parameters.getFlashMode() == null) {
                 return false;
             }
