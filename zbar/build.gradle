@@ -1,11 +1,21 @@
 apply plugin: 'com.android.library'
+apply from: "$project.rootDir/dependencies.gradle"
+android {
+    compileSdkVersion versions.compile_sdk
 
-ext {
-    isLibrary = true
-    pomPackaging = "aar"
-    pomArtifactId = "zbar"
-    pomName = "ZBar Scanner View"
-    pomDescription = 'An android library project which contains the zbar barcode scanner view'
+    defaultConfig {
+        minSdkVersion versions.min_sdk
+        targetSdkVersion versions.target_sdk
+        versionCode versions.version_code
+        versionName versions.version_name
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
