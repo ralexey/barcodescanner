@@ -14,7 +14,7 @@ buildscript {
 }
 
 allprojects {
-    group = 'me.dm7.barcodescanner'
+    group = 'com.github.ralexey'
     version = '1.9.14'
 
     repositories {
@@ -54,7 +54,7 @@ subprojects {
         def bintrayUser = properties.getProperty('bintray.user')
         def bintrayApikey = properties.getProperty('bintray.apikey')
 
-        if(project.isLibrary && bintrayUser?.trim() && bintrayApikey?.trim()) {
+        if(project.isLibrary) {
             configure(project) {
                 apply plugin: 'com.github.dcendents.android-maven'
                 group = project.group                               // Maven Group ID for the artifact
@@ -68,12 +68,12 @@ subprojects {
                             packaging project.pomPackaging
                             artifactId project.pomArtifactId
                             description project.pomDescription
-                            url 'https://github.com/dm77/barcodescanner'
+                            url 'https://github.com/ralexey/barcodescanner'
 
                             scm {
-                                url 'scm:git@github.com:dm77/barcodescanner.git'
-                                connection 'scm:git@github.com:dm77/barcodescanner.git'
-                                developerConnection 'scm:git@github.com:dm77/barcodescanner.git'
+                                url 'scm:git@github.com:ralexey/barcodescanner.git'
+                                connection 'scm:git@github.com:ralexey/barcodescanner.git'
+                                developerConnection 'scm:git@github.com:ralexey/barcodescanner.git'
                             }
 
                             licenses {
@@ -95,9 +95,9 @@ subprojects {
                     }
                 }
 
-                apply plugin: 'com.jfrog.bintray'
+                apply plugin: 'maven'
 
-                version = '1.9.13'
+                version = '1.9.14'
 
                 if (project.hasProperty("android")) { // Android libraries
                     task sourcesJar(type: Jar) {
@@ -114,29 +114,6 @@ subprojects {
 
                 artifacts {
                     archives sourcesJar
-                }
-
-                bintray {
-                    user = properties.getProperty("bintray.user")
-                    key = properties.getProperty("bintray.apikey")
-
-                    configurations = ['archives']
-                    pkg {
-                        repo = 'maven'
-                        name = 'me.dm7.barcodescanner:' + project.pomArtifactId
-                        desc = 'Barcode Scanner Libraries for Android'
-                        websiteUrl = 'https://github.com/dm77/barcodescanner'
-                        vcsUrl = 'https://github.com/dm77/barcodescanner.git'
-                        licenses = ["Apache-2.0"]
-                        publish = true
-                        publicDownloadNumbers = true
-                        version {
-                            desc = 'Barcode Scanner Libraries for Android'
-                            gpg {
-                                sign = false
-                            }
-                        }
-                    }
                 }
             }
         }
