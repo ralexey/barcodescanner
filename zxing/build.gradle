@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'android-maven'
 apply from: "$project.rootDir/dependencies.gradle"
-group='com.github.ralexey.barcodescanner'
+group = 'com.github.ralexey.barcodescanner'
+version = '1.9.14'
 
 android {
     compileSdkVersion versions.compile_sdk
